@@ -9,7 +9,7 @@
   "author": "Baravak <itb.baravak@gmail.com>",
   "license": "ISC",
   "bin": {
-    "saloos-tasks": "index.js"
+    "saloos-tasks": "bin/index.js"
   },
   "repository": {
     "type": "git",
