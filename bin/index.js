@@ -1,38 +1,53 @@
 (function() {
-  var _saloosTasks, saloosTasks;
+  var SaloosEtaskATask, SaloosEtaskATaski, SaloosTaskATask, SaloosTaskATaski, SaloosTaskExit, _saloosTasks, saloosTasks;
+
+  SaloosTaskExit = false;
+
+  SaloosTaskATask = new Array();
+
+  SaloosTaskATaski = new Object();
+
+  SaloosEtaskATask = new Array();
+
+  SaloosEtaskATaski = new Object();
 
   saloosTasks = (function() {
     var _;
 
     function saloosTasks() {}
 
-    saloosTasks.exit = false;
-
-    saloosTasks.aTask = new Array();
-
-    saloosTasks.aTaski = new Object();
-
     _ = saloosTasks;
 
     saloosTasks.prototype.task = function(_name, _fn) {
-      _.aTaski[_name] = _.aTask.length;
-      return _.aTask.push({
+      SaloosTaskATaski[_name] = SaloosTaskATask.length;
+      return SaloosTaskATask.push({
+        name: _name,
+        fn: _fn
+      });
+    };
+
+    saloosTasks.prototype.endtask = function(_name, _fn) {
+      SaloosEtaskATaski[_name] = SaloosEtaskATask.length;
+      return SaloosEtaskATask.push({
         name: _name,
         fn: _fn
       });
     };
 
     saloosTasks.prototype.run = function(_from) {
-      var i, j, ref, ref1, results, start;
-      _.exit = true;
+      var i, j, k, l, ref, ref1, ref2, results, start;
+      SaloosTaskExit = true;
       if (!_from) {
         start = 0;
       } else {
-        start = _.aTaski[_from];
+        start = SaloosTaskATaski[_from];
+      }
+      for (i = k = ref = start, ref1 = SaloosTaskATask.length - 1; ref <= ref1 ? k <= ref1 : k >= ref1; i = ref <= ref1 ? ++k : --k) {
+        SaloosTaskATask[i].fn();
       }
       results = [];
-      for (i = j = ref = start, ref1 = _.aTask.length - 1; ref <= ref1 ? j <= ref1 : j >= ref1; i = ref <= ref1 ? ++j : --j) {
-        results.push(_.aTask[i].fn());
+      for (j = l = 0, ref2 = SaloosEtaskATask.length - 1; 0 <= ref2 ? l <= ref2 : l >= ref2; j = 0 <= ref2 ? ++l : --l) {
+        results.push(SaloosEtaskATask[j].fn());
       }
       return results;
     };
@@ -44,7 +59,7 @@
   _saloosTasks = new saloosTasks;
 
   process.on('exit', function() {
-    if (_saloosTasks.exit) {
+    if (SaloosTaskExit) {
       return null;
     }
     return _saloosTasks.run(process.argv[2]);

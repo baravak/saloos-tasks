@@ -8,16 +8,18 @@ saloosTask.task "my", () ->
 
 saloosTask.task "iran", () ->
 	global.myTest.Iran = true
-saloosTask.run(0);
 
-console.log global.myTest
+require './secondTest.js'
+
+saloosTask.run();
+
 
 runtest = 0;
 for i of global.myTest
 	if global.myTest[i] == true
 		runtest++
 
-if runtest == 3
-	console.log "3 test passed"
+if runtest == 4
+	console.log "4 test passed"
 else
 	console.log "bug!!!!!!!"

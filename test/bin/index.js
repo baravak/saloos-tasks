@@ -17,9 +17,9 @@
     return global.myTest.Iran = true;
   });
 
-  saloosTask.run(0);
+  require('./secondTest.js');
 
-  console.log(global.myTest);
+  saloosTask.run();
 
   runtest = 0;
 
@@ -29,8 +29,8 @@
     }
   }
 
-  if (runtest === 3) {
-    console.log("3 test passed");
+  if (runtest === 4) {
+    console.log("4 test passed");
   } else {
     console.log("bug!!!!!!!");
   }
