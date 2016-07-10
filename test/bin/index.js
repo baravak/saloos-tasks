@@ -6,16 +6,20 @@
   global.myTest = new Object();
 
   saloosTask.task("hello", function() {
-    return global.myTest.Hello = true;
+    global.myTest.Hello = true;
+    return {
+      name: "second",
+      args: [true]
+    };
   });
 
-  saloosTask.task("my", function() {
-    return global.myTest.My = true;
-  });
+  saloosTask.task("my", function(r, a1) {
+    return global.myTest.My = a1;
+  }, true);
 
-  saloosTask.task("iran", function() {
-    return global.myTest.Iran = true;
-  });
+  saloosTask.task("iran", function(r, a1, a2) {
+    return global.myTest.Iran = a2;
+  }, false, true);
 
   require('./secondTest.js');
 
@@ -26,6 +30,8 @@
   for (i in global.myTest) {
     if (global.myTest[i] === true) {
       runtest++;
+    } else {
+      console.log("bug in " + i);
     }
   }
 
