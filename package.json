@@ -1,10 +1,10 @@
 {
   "name": "saloos-tasks",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "make tasks for pv projects",
   "main": "bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/bin/index.js"
   },
   "author": "Baravak <itb.baravak@gmail.com>",
   "license": "ISC",
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/baravak/saloos-tasks/issues"
   },
-  "homepage": "https://github.com/baravak/saloos-tasks#readme"
+  "homepage": "https://github.com/baravak/saloos-tasks#readme",
+  "directories": {
+    "test": "test"
+  }
 }
